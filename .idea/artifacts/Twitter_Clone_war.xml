@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Twitter-Clone:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Twitter-Clone</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Twitter-Clone-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Twitter-Clone:war exploded" />
+    </root>
+  </artifact>
+</component>
