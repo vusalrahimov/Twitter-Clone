@@ -53,7 +53,7 @@ public class AuthController extends HttpServlet {
                 }else{
                     HttpSession session = req.getSession(true);
                     session.setAttribute("user", user);
-                    resp.sendRedirect("/");
+                    resp.sendRedirect("/home");
                 }
             }
 
