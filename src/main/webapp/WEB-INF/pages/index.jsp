@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Home - Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/index.css" rel="stylesheet">
-    <script src="../../js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,7 +14,7 @@
                 <a class="nav-link" href="index.jsp">Home</a>
             </li>
             <li class="nav-item active p-2">
-                <a class="nav-link" data-toggle="modal" data-target="#search-modal" style="cursor: pointer">Search</a>
+                <a class="nav-link " data-toggle="modal" data-target="#search-modal" style="cursor: pointer">Search</a>
             </li>
             <li class="nav-item active p-2">
                 <a class="nav-link" data-toggle="modal" data-target="#share-tweet-modal" style="cursor: pointer">Share tweet</a>
@@ -43,7 +42,7 @@
                 </div>
             </div>
             <li class="nav-item active p-2">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="/auth?action=logout">Logout</a>
             </li>
         </ul>
     </div>
