@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -88,5 +89,30 @@ public class UserDaoImpl implements UserDao {
             throw new RuntimeException(e);
         }
         return user;
+    }
+
+    @Override
+    public List<User> getUsersByUsername(String username) {
+        String sql = "SELECT DISTINCT * FROM USERS WHERE LOWER(USERNAME) LIKE LOWER(?) AND ACTIVE_STATUS = ?";
+        List<User> userList = new ArrayList<>();
+        try(Connection connection = DatabaseManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, "%"+username+"%");
+            ps.setInt(2, EnumStatus.ACTIVE.value);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("ID"));
+                user.setName(rs.getString("FIRST_NAME"));
+                user.setSurname(rs.getString("LAST_NAME"));
+                user.setActiveStatus(rs.getInt("ACTIVE_STATUS"));
+                user.setDataDate(rs.getDate("DATA_DATE"));
+                user.setUsername(rs.getString("USERNAME"));
+                userList.add(user);
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return userList;
     }
 }

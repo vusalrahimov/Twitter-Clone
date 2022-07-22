@@ -12,19 +12,19 @@
     <form class="register-form" method="post" action="/auth?action=register">
         <div class="form-group m-4">
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+            <input type="text" class="form-control" required name="name" id="name" placeholder="Name">
         </div>
         <div class="form-group m-4">
             <label for="surname">Surname</label>
-            <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname">
+            <input type="text" class="form-control" required name="surname" id="surname" placeholder="Surname">
         </div>
         <div class="form-group m-4">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+            <input type="text" class="form-control" required name="username" id="username" placeholder="Username">
         </div>
         <div class="form-group m-4">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            <input type="password" class="form-control" required name="password" id="password" placeholder="Password">
         </div>
         <div class="form-group m-lg-4">
             <%

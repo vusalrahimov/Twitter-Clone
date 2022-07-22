@@ -3,7 +3,6 @@ package com.twitter.twitterclone.controller;
 import com.twitter.twitterclone.model.User;
 import com.twitter.twitterclone.service.UserService;
 import com.twitter.twitterclone.service.impl.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

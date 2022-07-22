@@ -5,6 +5,8 @@ import com.twitter.twitterclone.dao.impl.UserDaoImpl;
 import com.twitter.twitterclone.model.User;
 import com.twitter.twitterclone.service.UserService;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao = new UserDaoImpl();
@@ -24,5 +26,10 @@ public class UserServiceImpl implements UserService {
         if(username == null || password == null)
             return null;
         return userDao.getUserByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public List<User> getUsersByUsername(String username) {
+        return userDao.getUsersByUsername(username);
     }
 }
