@@ -5,6 +5,7 @@ import com.twitter.twitterclone.db.DatabaseManager;
 import com.twitter.twitterclone.enums.EnumStatus;
 import com.twitter.twitterclone.model.User;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -13,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    @Override
-    public List<User> getUsers() {
-        return null;
-    }
 
     @Override
     public User getUserByUsername(String username) {
@@ -45,7 +42,26 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Integer id) {
-        return null;
+        String sql = "SELECT * FROM USERS WHERE ID = ? AND ACTIVE_STATUS = ?";
+        User user = null;
+        try(Connection connection = DatabaseManager.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.setInt(2, EnumStatus.ACTIVE.value);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                user = new User();
+                user.setId(id);
+                user.setName(rs.getString("FIRST_NAME"));
+                user.setSurname(rs.getString("LAST_NAME"));
+                user.setUsername(rs.getString("USERNAME"));
+                user.setDataDate(rs.getDate("DATA_DATE"));
+                user.setActiveStatus(EnumStatus.ACTIVE.value);
+            }
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+        return user;
     }
 
     @Override

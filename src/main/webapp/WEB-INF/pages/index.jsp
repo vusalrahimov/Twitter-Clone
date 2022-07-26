@@ -149,6 +149,38 @@
         $('#search-user').parent().parent().parent().children('.user-container').remove();
         $('#search-user').parent().parent().parent().append(html);
     }
+
+    function sendRequest(event){
+        let buton = $(event);
+        let status = buton.parent().children('.status-value').val();
+
+        let url = "";
+        if (status == "follow") {
+            url = "/request?action=send";
+        } else if (status == "requested") {
+            url = "/request?action=remove";
+        } else if (status == "following") {
+            url = "/followings?action=remove";
+        }
+        let data = {receiverId: buton.val()}
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function () {
+                if (status == "follow") {
+                    buton.parent().children('.status-value').val('requested');
+                    buton.html('requested');
+                } else if (status == "requested") {
+                    buton.parent().children('.status-value').val('follow');
+                    buton.html('follow');
+                } else if (status == "following") {
+                    buton.parent().children('.status-value').val('follow');
+                    buton.html('follow');
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>

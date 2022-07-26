@@ -42,13 +42,24 @@ CREATE TABLE REQUEST(
                         constraint fk_request_receiver_id foreign key(RECEIVER_ID) references USERS(ID)
 );
 
-CREATE TABLE FRIENDS(
+CREATE TABLE FOLLOWINGS(
                         ID int auto_increment,
-                        FOLLOWER_ID int not null,
-                        FOLLOWINGS_ID int not null,
+                        SENDER_ID int not null,
+                        RECEIVER_ID int not null,
                         ACTIVE_STATUS int default 1,
                         DATA_DATE timestamp default current_timestamp,
                         primary key(id),
-                        constraint fk_friends_follower_id foreign key(FOLLOWER_ID) references USERS(ID),
-                        constraint fk_friends_followings_id foreign key(FOLLOWINGS_ID) references USERS(ID)
+                        constraint fk_followings_sender_id foreign key(SENDER_ID) references USERS(ID),
+                        constraint fk_followings_receiver_id foreign key(RECEIVER_ID) references USERS(ID)
+);
+
+CREATE TABLE FOLLOWER(
+                           ID int auto_increment,
+                           SENDER_ID int not null,
+                           RECEIVER_ID int not null,
+                           ACTIVE_STATUS int default 1,
+                           DATA_DATE timestamp default current_timestamp,
+                           primary key(id),
+                           constraint fk_follower_sender_id foreign key(SENDER_ID) references USERS(ID),
+                           constraint fk_follower_receiver_id foreign key(RECEIVER_ID) references USERS(ID)
 );

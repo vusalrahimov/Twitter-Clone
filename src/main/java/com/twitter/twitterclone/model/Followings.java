@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Friends extends BaseModel{
+public class Followings extends BaseModel{
     private Integer id;
-    private User follower;
-    private User followings;
+    private User sender;
+    private User receiver;
 }

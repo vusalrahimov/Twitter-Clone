@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface RequestDao {
     List<Request> getRequestsByReceiverId(Integer receiverId);
+
+    Request getRequestByIds(Integer senderId, Integer receiverId);
+
+    void save(Integer senderId, Integer receiverId);
+
+    void delete(Integer senderId, Integer receiverId);
 }

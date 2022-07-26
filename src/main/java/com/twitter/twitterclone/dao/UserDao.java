@@ -4,9 +4,8 @@ import com.twitter.twitterclone.model.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserDao{
 
-    List<User> getUsers();
     User getUserByUsername(String username);
     User getUserById(Integer id);
     void saveUser(User user);
