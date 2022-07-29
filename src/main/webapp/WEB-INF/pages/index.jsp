@@ -26,23 +26,6 @@
                 <a class="nav-link" >Requests</a>
             </li>
             <div class="user-request-container" id="user-request-container">
-<%--                <div class="request-container w-100">--%>
-<%--                    <div class="user-request w-100 m-2">--%>
-<%--                        <span><span>@</span>vrehimov</span>--%>
-<%--                            <button class="btn btn-primary">Accept</button>--%>
-<%--                        <button class="btn btn-danger">Decline</button>--%>
-<%--                    </div>--%>
-<%--                    <div class="user-request w-100 m-2">--%>
-<%--                        <span><span>@</span>vrehimov</span>--%>
-<%--                        <button class="btn btn-primary">Accept</button>--%>
-<%--                        <button class="btn btn-danger">Decline</button>--%>
-<%--                    </div>--%>
-<%--                    <div class="user-request w-100 m-2">--%>
-<%--                        <span><span>@</span>vrehimov</span>--%>
-<%--                        <button class="btn btn-primary">Accept</button>--%>
-<%--                        <button class="btn btn-danger">Decline</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
             </div>
             <li class="nav-item active p-2">
                 <a class="nav-link" href="/auth?action=logout">Logout</a>
