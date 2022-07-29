@@ -2,7 +2,7 @@ package com.twitter.twitterclone.dao;
 
 import com.twitter.twitterclone.model.Followings;
 
-public interface FollowingsDao {
+public interface FollowerDao {
 
     void addFriend(Integer senderId, Integer receiverId);
 

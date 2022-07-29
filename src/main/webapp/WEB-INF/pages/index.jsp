@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/index.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,27 +22,27 @@
             <li class="nav-item active p-2">
                 <a class="nav-link" data-toggle="modal" data-target="#share-tweet-modal" style="cursor: pointer">Share tweet</a>
             </li>
-            <li class="nav-item active p-2" id="requests">
-                <a class="nav-link" href="#">Requests</a>
+            <li class="nav-item active p-2" onmouseover="getUserRequests()" id="requests">
+                <a class="nav-link" >Requests</a>
             </li>
             <div class="user-request-container" id="user-request-container">
-                <div class="request-container w-100">
-                    <div class="user-request w-100 m-2">
-                        <span><span>@</span>vrehimov</span>
-                            <button class="btn btn-primary">Accept</button>
-                        <button class="btn btn-danger">Decline</button>
-                    </div>
-                    <div class="user-request w-100 m-2">
-                        <span><span>@</span>vrehimov</span>
-                        <button class="btn btn-primary">Accept</button>
-                        <button class="btn btn-danger">Decline</button>
-                    </div>
-                    <div class="user-request w-100 m-2">
-                        <span><span>@</span>vrehimov</span>
-                        <button class="btn btn-primary">Accept</button>
-                        <button class="btn btn-danger">Decline</button>
-                    </div>
-                </div>
+<%--                <div class="request-container w-100">--%>
+<%--                    <div class="user-request w-100 m-2">--%>
+<%--                        <span><span>@</span>vrehimov</span>--%>
+<%--                            <button class="btn btn-primary">Accept</button>--%>
+<%--                        <button class="btn btn-danger">Decline</button>--%>
+<%--                    </div>--%>
+<%--                    <div class="user-request w-100 m-2">--%>
+<%--                        <span><span>@</span>vrehimov</span>--%>
+<%--                        <button class="btn btn-primary">Accept</button>--%>
+<%--                        <button class="btn btn-danger">Decline</button>--%>
+<%--                    </div>--%>
+<%--                    <div class="user-request w-100 m-2">--%>
+<%--                        <span><span>@</span>vrehimov</span>--%>
+<%--                        <button class="btn btn-primary">Accept</button>--%>
+<%--                        <button class="btn btn-danger">Decline</button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
             <li class="nav-item active p-2">
                 <a class="nav-link" href="/auth?action=logout">Logout</a>
@@ -128,59 +129,8 @@
         </div>
     </div>
 </div>
-
-<script src="../../js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script>
-    function getUsersByUsername(){
-        $.ajax({
-            url:"/user?username="+$('#search-user').val(),
-            type: "GET",
-            dataType:"html",
-            success:function (html) {
-                setUserData(html);
-            }
-        });
-    }
-
-    function setUserData(html){
-        $('#search-user').parent().parent().parent().children('.user-container').remove();
-        $('#search-user').parent().parent().parent().append(html);
-    }
-
-    function sendRequest(event){
-        let buton = $(event);
-        let status = buton.parent().children('.status-value').val();
-
-        let url = "";
-        if (status == "follow") {
-            url = "/request?action=send";
-        } else if (status == "requested") {
-            url = "/request?action=remove";
-        } else if (status == "following") {
-            url = "/followings?action=remove";
-        }
-        let data = {receiverId: buton.val()}
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: data,
-            success: function () {
-                if (status == "follow") {
-                    buton.parent().children('.status-value').val('requested');
-                    buton.html('requested');
-                } else if (status == "requested") {
-                    buton.parent().children('.status-value').val('follow');
-                    buton.html('follow');
-                } else if (status == "following") {
-                    buton.parent().children('.status-value').val('follow');
-                    buton.html('follow');
-                }
-            }
-        });
-    }
-</script>
 </body>
 </html>

@@ -7,10 +7,8 @@ import com.twitter.twitterclone.enums.EnumStatus;
 import com.twitter.twitterclone.model.Request;
 
 import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequestDaoImpl implements RequestDao {
@@ -73,5 +71,31 @@ public class RequestDaoImpl implements RequestDao {
         }catch (Exception ex){
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public List<Request> getRequests(Integer receiverId) {
+        String sql = "SELECT * FROM REQUEST WHERE RECEIVER_ID = ? AND ACTIVE_STATUS = ?";
+        List<Request> requestList = new ArrayList<>();
+        try(Connection connection = DatabaseManager.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, receiverId);
+            ps.setInt(2, EnumStatus.ACTIVE.value);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Request request = new Request();
+                request.setId(rs.getInt("ID"));
+                request.setDataDate(rs.getDate("DATA_DATE"));
+                request.setActiveStatus(EnumStatus.ACTIVE.value);
+                request.setReceiver(userDao.getUserById(receiverId));
+                request.setSender(userDao.getUserById(rs.getInt("SENDER_ID")));
+                requestList.add(request);
+            }
+
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+
+        return requestList;
     }
 }

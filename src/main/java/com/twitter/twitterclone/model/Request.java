@@ -1,14 +1,12 @@
 package com.twitter.twitterclone.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Request extends BaseModel{
     private Integer id;
     private User sender;

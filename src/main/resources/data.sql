@@ -42,7 +42,7 @@ CREATE TABLE REQUEST(
                         constraint fk_request_receiver_id foreign key(RECEIVER_ID) references USERS(ID)
 );
 
-CREATE TABLE FOLLOWINGS(
+CREATE TABLE FOLLOWING(
                         ID int auto_increment,
                         SENDER_ID int not null,
                         RECEIVER_ID int not null,

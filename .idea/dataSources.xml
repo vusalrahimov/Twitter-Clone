@@ -22,5 +22,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/twitter</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="sql8509233@sql8.freemysqlhosting.net" uuid="f2692c18-1c96-4f97-b82d-18d1f611bb19">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8509233</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

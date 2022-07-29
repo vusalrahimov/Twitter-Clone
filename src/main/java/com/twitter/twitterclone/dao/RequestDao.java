@@ -12,4 +12,6 @@ public interface RequestDao {
     void save(Integer senderId, Integer receiverId);
 
     void delete(Integer senderId, Integer receiverId);
+
+    List<Request> getRequests(Integer receiverId);
 }
