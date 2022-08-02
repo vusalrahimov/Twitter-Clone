@@ -1,5 +1,5 @@
-$('.btn-load-comments').click(function () {
-    let event = $(this);
+function loadComment(buton) {
+    let event = $(buton);
     if (event.val() == "open") {
         event.parent().parent().children('.write-comment-section').hide()
         event.parent().parent().children('.read-comment-section').remove();
@@ -18,17 +18,28 @@ $('.btn-load-comments').click(function () {
         event.parent().parent().children('.write-comment-section').show();
         event.val('open');
     }
-});
+}
+
 
 function getUsersByUsername(){
-    $.ajax({
-        url:"/user?username="+$('#search-user').val(),
-        type: "GET",
-        dataType:"html",
-        success:function (html) {
-            setUserData(html);
-        }
-    });
+    callUsers();
+}
+
+function callUsers(){
+    setInterval(function (){
+        $.ajax({
+            url: "/user?username=" + $('#search-user').val(),
+            type: "GET",
+            dataType: "html",
+            success: function (html) {
+
+                setUserData(html);
+            },
+            error:function (err) {
+                console.log(err);
+            }
+        });
+    }, 4000);
 }
 
 function setUserData(html){
@@ -78,7 +89,6 @@ function getUserRequests(){
         async: false,
         dataType: "html",
         success: function (html) {
-            console.log("Success");
            $('#user-request-container').append(html);
         },
         error:function (err) {
@@ -111,6 +121,41 @@ function deleteRequest(event){
             buton.parent().remove();
         }
     });
+}
+
+function getPosts(){
+    $.ajax({
+        url:"/post",
+        type:"GET",
+        dataType:"html",
+        success: function (html) {
+            $('#tweet-data-container').html(html);
+        },
+        error:function (err) {
+            console.log(err);
+        }
+    })
+}
+
+$(window).on( "load", function() {
+    getPosts();
+});
+
+
+function shareTweet(){
+    $.ajax({
+        url:"/post",
+        type:"POST",
+        data:{tweet:$('#tweet-input').val()},
+        success:function (){
+            $('#tweet-input').val('');
+            getPosts();
+            $('#share-section-cls-btn').click();
+        },
+        error:function (err) {
+            console.log(err);
+        }
+    })
 }
 
 

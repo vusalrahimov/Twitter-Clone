@@ -2,7 +2,9 @@ package com.twitter.twitterclone.controller;
 
 import com.twitter.twitterclone.model.User;
 import com.twitter.twitterclone.service.FollowerService;
+import com.twitter.twitterclone.service.FollowingService;
 import com.twitter.twitterclone.service.impl.FollowerServiceImpl;
+import com.twitter.twitterclone.service.impl.FollowingServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,8 @@ public class FollowerController extends HttpServlet {
             Integer senderId = user.getId();
             Integer receiverId = Integer.valueOf(req.getParameter("receiverId"));
             FollowerService followerService = new FollowerServiceImpl();
+            FollowingService followingService = new FollowingServiceImpl();
+            followingService.remove(senderId, receiverId);
             followerService.remove(senderId, receiverId);
         }
     }

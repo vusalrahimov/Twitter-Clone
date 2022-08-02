@@ -9,4 +9,7 @@ public interface PostDao {
     List<Post> getPostsByUserId(Integer userId);
     Post getPostById(Integer id);
 
+    void save(String tweet, Integer userId);
+
+    List<Post> getPostsByFollowerId(Integer id);
 }

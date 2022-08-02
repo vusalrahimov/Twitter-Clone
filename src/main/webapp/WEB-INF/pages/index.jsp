@@ -34,33 +34,7 @@
     </div>
 </nav>
 
-<div class="tweet-container w-100 p-5">
-
-    <div class="card m-3">
-        <div class="card-body">
-            <h5 class="card-title text-primary"><span>@</span>vrehimov</h5>
-            <p class="card-text lead">With supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn-load-comments" value="close">
-                <i class="fa-solid fa-comment"></i>
-                <span><span>12</span>&nbsp;comments</span>
-            </button>
-        </div>
-
-        <div class="write-comment-section m-2 p-2" style="display: none">
-            <hr>
-            <textarea class="form-control m-2" rows="3" placeholder="Share your comment..."></textarea>
-            <button type="button" style="float: right" class="btn btn-primary m-2">Comment</button>
-        </div>
-        <!--        <div class="read-comment-section m-1 p-2">-->
-        <!--            <div class="comment-container m-3">-->
-        <!--                <span class="comment-user"><span>@</span>vrehimov:</span>&nbsp;-->
-        <!--                <p class="comment-text">Some comments in here Some comments in here Some Some comments in here Some-->
-        <!--                    comments in here Some comments iSome comments in here Some comments in here Some comments iSome-->
-        <!--                    comments in here Some comments in here Some comments icomments in here Some comments in here Some-->
-        <!--                    comments in here Some comments in here </p>-->
-        <!--            </div>-->
-        <!--        </div>-->
-    </div>
+<div class="tweet-container w-100 p-5" id="tweet-data-container">
 
 </div>
 
@@ -106,8 +80,8 @@
                 <textarea id="tweet-input" rows="10" class="form-control" placeholder="Share your idea..."></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Share</button>
+                <button type="button" class="btn btn-secondary" id="share-section-cls-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="shareTweet()">Share</button>
             </div>
         </div>
     </div>

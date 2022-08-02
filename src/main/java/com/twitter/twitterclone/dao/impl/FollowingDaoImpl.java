@@ -27,4 +27,18 @@ public class FollowingDaoImpl implements FollowingDao {
             throw new RuntimeException(ex);
         }
     }
+
+    @Override
+    public void remove(Integer senderId, Integer receiverId) {
+        String sql = "DELETE FROM FOLLOWING WHERE SENDER_ID = ? AND RECEIVER_ID = ? AND ACTIVE_STATUS = ?";
+        try(Connection connection = DatabaseManager.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, senderId);
+            ps.setInt(2, receiverId);
+            ps.setInt(3, EnumStatus.ACTIVE.value);
+            ps.execute();
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
 }

@@ -12,4 +12,9 @@ public class FollowingServiceImpl implements FollowingService {
     public void add(Integer senderId, Integer receiverId) {
         followingDao.add(senderId, receiverId);
     }
+
+    @Override
+    public void remove(Integer senderId, Integer receiverId) {
+        followingDao.remove(senderId, receiverId);
+    }
 }
