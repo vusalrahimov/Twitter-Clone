@@ -5,8 +5,6 @@ import com.twitter.twitterclone.dao.UserDao;
 import com.twitter.twitterclone.db.DatabaseManager;
 import com.twitter.twitterclone.enums.EnumStatus;
 import com.twitter.twitterclone.model.Post;
-import javafx.geometry.Pos;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
