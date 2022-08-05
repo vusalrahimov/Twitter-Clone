@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="Twitter-Clone-1.0-SNAPSHOT.war">
+    <root id="archive" name="faketwitterclone.war">
       <element id="artifact" artifact-name="Twitter-Clone:war exploded" />
     </root>
   </artifact>
