@@ -14,7 +14,7 @@ public class DatabaseManager {
         try {
         Context ctx = new InitialContext();
 
-        DataSource dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
+        DataSource dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/postgresql");
         connection = dataSource.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);

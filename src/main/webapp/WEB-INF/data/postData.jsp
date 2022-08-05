@@ -21,7 +21,9 @@
     <div class="write-comment-section m-2 p-2" style="display: none">
         <hr>
         <textarea class="form-control m-2" rows="3" placeholder="Share your comment..."></textarea>
-        <button type="button" style="float: right" value="<%=p.getId()%>" class="btn btn-primary m-2">Comment</button>
+        <button type="button" style="float: right" value="<%=p.getId()%>" onclick="sendComment(this)" class="btn btn-primary m-2">Comment</button>
     </div>
+
+
 </div>
 <%}%>

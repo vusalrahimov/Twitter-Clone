@@ -29,7 +29,25 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public Post getPostById(Integer id) {
-        return null;
+        String sql = "SELECT * FROM POST WHERE ID = ? AND ACTIVE_STATUS = ?";
+        Post post = null;
+        try(Connection connection = DatabaseManager.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.setInt(2, EnumStatus.ACTIVE.value);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                post = new Post();
+                post.setId(rs.getInt("ID"));
+                post.setTweet(rs.getString("TWEET"));
+                post.setActiveStatus(EnumStatus.ACTIVE.value);
+                post.setUser(userDao.getUserById(rs.getInt("USER_ID")));
+                post.setDataDate(rs.getDate("DATA_DATE"));
+            }
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+        return post;
     }
 
     @Override
@@ -50,7 +68,7 @@ public class PostDaoImpl implements PostDao {
     @Override
     public List<Post> getPostsByFollowerId(Integer id) {
         String sql = "SELECT * FROM POST p WHERE ACTIVE_STATUS = ? AND (p.USER_ID = ANY" +
-                " (SELECT RECEIVER_ID FROM FOLLOWING WHERE SENDER_ID = ? AND ACTIVE_STATUS = ?) OR p.USER_ID = ?) ORDER BY p.DATA_DATE DESC";
+                " (SELECT RECEIVER_ID FROM FOLLOWING WHERE SENDER_ID = ? AND ACTIVE_STATUS = ?) OR p.USER_ID = ?) ORDER BY p.DATA_DATE ASC";
         List<Post> postList = new ArrayList<>();
         try(Connection connection = DatabaseManager.getConnection();
         PreparedStatement ps = connection.prepareStatement(sql)){

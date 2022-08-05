@@ -1,26 +1,3 @@
-function loadComment(buton) {
-    let event = $(buton);
-    if (event.val() == "open") {
-        event.parent().parent().children('.write-comment-section').hide()
-        event.parent().parent().children('.read-comment-section').remove();
-        event.val('close');
-    } else {
-        let html = "        <div class=\"read-comment-section m-1 p-2\">\n" +
-            "            <div class=\"comment-container m-3\">\n" +
-            "                <span class=\"comment-user\"><span>@</span>vrehimov:</span>&nbsp;\n" +
-            "                <p class=\"comment-text\">Some comments in here Some comments in here Some Some comments in here Some\n" +
-            "                    comments in here Some comments iSome comments in here Some comments in here Some comments iSome\n" +
-            "                    comments in here Some comments in here Some comments icomments in here Some comments in here Some\n" +
-            "                    comments in here Some comments in here </p>\n" +
-            "            </div>\n" +
-            "        </div>";
-        event.parent().parent().append(html + html);
-        event.parent().parent().children('.write-comment-section').show();
-        event.val('open');
-    }
-}
-
-
 function getUsersByUsername(){
     callUsers();
 }
@@ -89,7 +66,7 @@ function getUserRequests(){
         async: false,
         dataType: "html",
         success: function (html) {
-           $('#user-request-container').append(html);
+            $('#user-request-container').append(html);
         },
         error:function (err) {
             console.log(err)
@@ -122,42 +99,6 @@ function deleteRequest(event){
         }
     });
 }
-
-function getPosts(){
-    $.ajax({
-        url:"/post",
-        type:"GET",
-        dataType:"html",
-        success: function (html) {
-            $('#tweet-data-container').html(html);
-        },
-        error:function (err) {
-            console.log(err);
-        }
-    })
-}
-
-$(window).on( "load", function() {
-    getPosts();
-});
-
-
-function shareTweet(){
-    $.ajax({
-        url:"/post",
-        type:"POST",
-        data:{tweet:$('#tweet-input').val()},
-        success:function (){
-            $('#tweet-input').val('');
-            getPosts();
-            $('#share-section-cls-btn').click();
-        },
-        error:function (err) {
-            console.log(err);
-        }
-    })
-}
-
 
 
 

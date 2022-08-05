@@ -8,4 +8,8 @@ public interface CommentDao {
     List<Comment> getComments();
     List<Comment> getCommentsByPostId(Integer postId);
     Comment getCommentById(Integer id);
+
+    int count(Integer postId);
+
+    void post(String comment, Integer tweetId, Integer userId);
 }

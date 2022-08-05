@@ -4,11 +4,13 @@ import com.twitter.twitterclone.dao.CommentDao;
 import com.twitter.twitterclone.dao.impl.CommentDaoImpl;
 import com.twitter.twitterclone.db.DatabaseManager;
 import com.twitter.twitterclone.enums.EnumStatus;
+import com.twitter.twitterclone.model.Comment;
 import com.twitter.twitterclone.service.CommentService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
 
@@ -17,18 +19,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int count(Integer postId) {
-        String sql = "SELECT COUNT(*) AS COUNT FROM POST_COMMENT WHERE POST_ID = ? AND ACTIVE_STATUS = ?";
-        try(Connection connection = DatabaseManager.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setInt(1, postId);
-            ps.setInt(2, EnumStatus.ACTIVE.value);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-               return rs.getInt("COUNT");
-            }
-        }catch (Exception ex){
-            throw new RuntimeException(ex);
-        }
-        return 0;
+        return commentDao.count(postId);
+    }
+
+    @Override
+    public void send(String comment, Integer tweetId, Integer userId) {
+        commentDao.post(comment, tweetId, userId);
+    }
+
+    @Override
+    public List<Comment> getCommentsByPostId(Integer tweetId) {
+        return commentDao.getCommentsByPostId(tweetId);
     }
 }
