@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active p-2">
-                <a class="nav-link" href="index.jsp">Home</a>
+                <a class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item active p-2">
                 <a class="nav-link " data-toggle="modal" data-target="#search-modal" style="cursor: pointer">Search</a>
